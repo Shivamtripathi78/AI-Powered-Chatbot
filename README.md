@@ -51,7 +51,7 @@ curl -X POST http://127.0.0.1:5000/api/chat -H "Content-Type: application/json" 
 ## Limitations and next steps
 This is a retrieval/intent-matching chatbot. It does not understand context across multiple turns, generate novel answers, or connect to an external LLM. Add more diverse patterns, automated tests, session-aware context, and optionally a properly secured LLM API integration if desired. Do not commit API keys or personal data.
 
-Author
+Author-
 Shivam Tripathi
 
 GitHub: Shivamtripathi78
