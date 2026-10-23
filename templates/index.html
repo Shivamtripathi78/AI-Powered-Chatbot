@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareerBot | Python Chatbot</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="header"><div class="avatar">CB</div><div><h1>CareerBot</h1><p>Python-powered learning assistant · Demo</p></div><span class="status">● Online</span></header>
+    <section class="intro"><h2>Hi there 👋</h2><p>Ask me about Python, web development, interview preparation, or resume tips.</p>
+      <div class="suggestions"><button data-question="How do I prepare for a technical interview?">Interview prep</button><button data-question="How do I learn web development?">Web development</button><button data-question="What is Python?">Python</button></div>
+    </section>
+    <section id="messages" class="messages" aria-live="polite"><div class="message bot"><span class="label">CareerBot</span><p>Hello! What can I help you with today?</p></div></section>
+    <form id="chat-form" class="composer"><input id="message-input" autocomplete="off" maxlength="1000" placeholder="Type your message..." aria-label="Message"><button id="send-button" type="submit">Send ↑</button></form>
+    <footer>Educational intent-matching demo · Avoid sharing personal or sensitive information.</footer>
+  </main>
+  <script>
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('message-input');
+    const messages = document.getElementById('messages');
+    const send = document.getElementById('send-button');
+    function addMessage(text, who, meta='') {
+      const wrap = document.createElement('div'); wrap.className = `message ${who}`;
+      const label = document.createElement('span'); label.className='label'; label.textContent = who==='user' ? 'You' : 'CareerBot';
+      const p = document.createElement('p'); p.textContent = text;
+      wrap.append(label,p);
+      if (meta) { const small=document.createElement('small'); small.textContent=meta; wrap.append(small); }
+      messages.append(wrap); messages.scrollTop=messages.scrollHeight;
+    }
+    async function sendMessage(text) {
+      if (!text.trim()) return;
+      addMessage(text.trim(),'user'); input.value=''; send.disabled=true;
+      try {
+        const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text.trim()})});
+        const data=await response.json();
+        addMessage(data.reply || 'Sorry, something went wrong.','bot', data.intent ? `Intent: ${data.intent} · Similarity: ${Math.round((data.confidence || 0)*100)}%` : '');
+      } catch (e) { addMessage('Could not connect to the server. Please check that the app is running.','bot'); }
+      finally { send.disabled=false; input.focus(); }
+    }
+    form.addEventListener('submit', e=>{e.preventDefault();sendMessage(input.value);});
+    document.querySelectorAll('[data-question]').forEach(b=>b.addEventListener('click',()=>sendMessage(b.dataset.question)));
+  </script>
+</body>
+</html>

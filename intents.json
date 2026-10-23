@@ -1,0 +1,15 @@
+{
+  "intents": [
+    {"tag":"greeting","patterns":["hello","hi","hey","good morning","good evening","hello there","how are you"],"responses":["Hello! I’m CareerBot, a simple Python chatbot. What would you like to know?"]},
+    {"tag":"goodbye","patterns":["bye","goodbye","see you later","talk to you later","quit","exit"],"responses":["Goodbye! Keep learning and building. Have a great day!"]},
+    {"tag":"thanks","patterns":["thanks","thank you","that helped","thanks a lot","appreciate it"],"responses":["You’re welcome! Feel free to ask another question."]},
+    {"tag":"identity","patterns":["who are you","what are you","tell me about yourself","what is your name","are you a bot"],"responses":["I’m CareerBot, a rule-based intent-matching chatbot built with Python, Flask, and scikit-learn."]},
+    {"tag":"features","patterns":["what can you do","what are your features","help me","how can you help","what do you support"],"responses":["I can respond to common questions about Python, web development, interview preparation, and this demo. I use intent similarity, so I may not understand every phrasing."]},
+    {"tag":"python","patterns":["what is python","learn python","python programming","why use python","python tips"],"responses":["Python is a general-purpose language popular for automation, web backends, data analysis, and machine learning. Start with variables, conditions, loops, functions, collections, and small projects."]},
+    {"tag":"webdev","patterns":["web development","how to build a website","frontend backend","learn html css javascript","web developer skills"],"responses":["A useful web-development path is HTML and CSS, JavaScript, responsive design, HTTP and REST APIs, then a framework such as React and a backend such as Flask or FastAPI. Build and deploy small projects as you learn."]},
+    {"tag":"interview","patterns":["interview preparation","prepare for technical interview","coding interview tips","how to prepare for placement","software developer interview"],"responses":["For entry-level developer interviews, practise arrays, strings, hash maps, sorting, binary search, and basic trees; revise OOP, DBMS, OS, and networking; and prepare clear explanations of your own projects."]},
+    {"tag":"resume","patterns":["resume tips","improve my resume","what to add in resume","cv advice","project description"],"responses":["Keep your resume concise and evidence-based. For each project, state the problem, your implementation, the technologies used, and a measurable result only when you can verify it. Add GitHub links and a working demo where possible."]},
+    {"tag":"contact","patterns":["contact support","how do I contact you","contact details","report a problem"],"responses":["This is an educational demo and has no live support team. You can improve its answers by editing the patterns and responses in intents.json."]},
+    {"tag":"creator","patterns":["who created you","who made this chatbot","how were you built","what technology do you use"],"responses":["This demo is built with Python, Flask, scikit-learn TF-IDF vectorization, cosine similarity, and an editable JSON intent file."]}
+  ]
+}
